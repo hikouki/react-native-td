@@ -1,0 +1,37 @@
+export declare type ErrorCode = 'init_error' | 'invalid_param' | 'invalid_event' | 'data_conversion' | 'storage_error' | 'network_error' | 'server_response';
+export interface TreasureData {
+    initialize: (apiKey: string) => void;
+    initializeApiEndpoint: (apiEndpoint: string) => void;
+    initializeEncryptionKey: (encryptionKey: string) => void;
+    setDefaultDatabase: (database: string) => void;
+    enableAutoAppendUniqId: () => void;
+    disableAutoAppendUniqId: () => void;
+    enableAutoAppendRecordUUID: (column: string) => void;
+    disableAutoAppendRecordUUID: () => void;
+    enableAutoAppendModelInformation: () => void;
+    disableAutoAppendModelInformation: () => void;
+    enableAutoAppendAppInformation: () => void;
+    disableAutoAppendAppInformation: () => void;
+    enableAutoAppendLocaleInformation: () => void;
+    disableAutoAppendLocaleInformation: () => void;
+    enableServerSideUploadTimestamp: (column: string) => void;
+    disableServerSideUploadTimestamp: () => void;
+    enableLogging: () => void;
+    disableLogging: () => void;
+    enableRetryUploading: () => void;
+    disableRetryUploading: () => void;
+    enableEventCompression: () => void;
+    disableEventCompression: () => void;
+    addEvent: (record: object, database: string | undefined | null, table: string) => void;
+    addEventWithCallback: (record: object, database: string | undefined | null, table: string, onSuccess: () => void, onError: (errorCode: ErrorCode, message: string | undefined | null) => void) => void;
+    uploadEvents: () => void;
+    uploadEventsWithCallback: (onSuccess: () => void, onError: (errorCode: ErrorCode, message: string | undefined | null) => void) => void;
+    startSession: (table: string, database: string) => void;
+    endSession: (table: string, database: string) => void;
+    getSessionId: () => Promise<string>;
+    isFirstRun: () => Promise<void>;
+    clearFirstRun: () => void;
+    setSessionTimeoutMilli: (to: number) => void;
+}
+declare const TreasureData: TreasureData;
+export default TreasureData;
